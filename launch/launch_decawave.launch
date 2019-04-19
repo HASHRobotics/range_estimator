@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<launch>
+
+  <node name="decawave" pkg="decawave" type="decawave.py" output="screen">
+  </node>
+
+  <param name = "USB_port" type = "str" value="/dev/ttyACM0"/>
+
+</launch>
