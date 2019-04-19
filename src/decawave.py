@@ -2,9 +2,7 @@
 import rospy
 import serial
 import time
-from std_msgs.msg import String
 from sensor_msgs.msg import Range
-import pdb
 from collections import deque
 from statistics import median
 
@@ -21,7 +19,7 @@ def get_range(median,mean):
         return median
 
 def distance_measurement():
-    pub = rospy.Publisher('range', Range, queue_size=10)
+    pub = rospy.Publisher('estimate_range', Range, queue_size=10)
     rospy.init_node('decawave', anonymous=True)
     rate = rospy.Rate(10)
     number_of_elements_to_consider_for_filtering = 10
