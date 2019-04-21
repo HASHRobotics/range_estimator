@@ -4,6 +4,6 @@
   <node name="decawave" pkg="decawave" type="decawave.py" output="screen">
   </node>
 
-  <param name = "USB_port" type = "str" value="/dev/ttyACM0"/>
+  <param name = "USB_port" type = "str" value="/dev/uwb"/>
 
 </launch>
