@@ -13,8 +13,8 @@ def calculate_real_range():
     rospy.init_node('rtk_range', anonymous=True)
     rate = rospy.Rate(10) # 10hz
     pub = rospy.Publisher('rtk_range', Range, queue_size=10)
-    rospy.Subscriber("/piksi/enu_pose_fix",PoseWithCovariance, set_pose_1)
-    rospy.Subsciber("/piksi/enu_pose_fix",PoseWithCovariance, set_pose_2)
+    rospy.Subscriber("/ak1/piksi_multi/enu_pose_best_fix",PoseWithCovariance, set_pose_1)
+    rospy.Subsciber("/ak2/piksi_multi/enu_pose_best_fix",PoseWithCovariance, set_pose_2)
     while not rospy.is_shutdown():
         real_range = np.linalg.norm(position1-position2)
         range = Range()
