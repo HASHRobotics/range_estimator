@@ -14,11 +14,13 @@ def calculate_real_range():
     rate = rospy.Rate(10) # 10hz
     pub = rospy.Publisher('rtk_range', Range, queue_size=10)
     rospy.Subscriber("/ak1/piksi_multi/enu_pose_best_fix",PoseWithCovariance, set_pose_1)
-    rospy.Subsciber("/ak2/piksi_multi/enu_pose_best_fix",PoseWithCovariance, set_pose_2)
+    # rospy.Subsciber("/ak2/piksi_multi/enu_pose_best_fix",PoseWithCovariance, set_pose_2)
     while not rospy.is_shutdown():
+        position2 = np.array([0,0,0])
         real_range = np.linalg.norm(position1-position2)
         range = Range()
         range.range = real_range
+        range.header.stamp = rospy.get_rostime()
         pub.publish(range)
         rate.sleep()
 
@@ -26,9 +28,9 @@ def set_pose_1(msg):
     global position1
     position1 = np.array([msg.pose.position.x, msg.pose.position.y, msg.pose.position.z])
 
-def set_pose_2(msg):
-    global position2
-    position2 = np.array([msg.pose.position.x, msg.pose.position.y, msg.pose.position.z])
+# def set_pose_2(msg):
+#     global position2
+#     position2 = np.array([msg.pose.position.x, msg.pose.position.y, msg.pose.position.z])
 
 if __name__ == '__main__':
     try:
