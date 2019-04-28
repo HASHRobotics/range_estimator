@@ -32,7 +32,7 @@ def calculate_real_range():
 
 def set_pose_2(msg):
     global position2
-    position2 = np.array([msg.n, msg.e, msg.d])
+    position2 = np.array([msg.e, msg.n])
 
 if __name__ == '__main__':
     try:
