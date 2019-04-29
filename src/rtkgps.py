@@ -7,8 +7,8 @@ import numpy as np
 from sensor_msgs.msg import Range
 from piksi_rtk_msgs.msg import BaselineNed
 
-position1 = np.array([0,0,0])
-position2 = np.array([0,0,0])
+position1 = np.array([0,0])
+position2 = np.array([0,0])
 
 def calculate_real_range():
     rospy.init_node('rtk_range', anonymous=True)
@@ -32,7 +32,9 @@ def calculate_real_range():
 
 def set_pose_2(msg):
     global position2
-    position2 = np.array([msg.e, msg.n])
+    x = msg.e/1000.0
+    y = msg.n/1000.0
+    position2 = np.array([x, y])
 
 if __name__ == '__main__':
     try:
